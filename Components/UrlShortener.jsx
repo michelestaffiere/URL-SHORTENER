@@ -1,13 +1,13 @@
 import { useEffect,useState } from "react";
 import axios from 'axios';
+import './UrlShortener.css';
 
 
 
-const UrlShortener = () =>{
+const UrlShortener = ({shortLinks, normalLinks, currentShortList, currentOgList}) =>{
     //states
-    const [shortenedLinks, setShortenedLinks] = useState([]);
-    const [orignalLinks, setOrignalLinks] = useState([]);
     const [userInput, setUserInput] = useState("");
+    const [linkValid, setLinkValid] = useState(true);
     
     //variables
 
@@ -15,12 +15,16 @@ const UrlShortener = () =>{
         setUserInput(e.target.value)
     };
     const validateLink = (link) =>{
-        try{
-            new URL(link);
-            return true;
-        } catch (error){
-            return false;
+        // link cant start with www. needs to start with http://
+        if(link.startsWith("http://") || link.startsWith("https://")){
+            try{
+                new URL(link);
+                return true;
+            } catch (error){
+                return false;
+            }
         }
+        return false // previous try catch returns no protocol found.
     };
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -35,16 +39,19 @@ const UrlShortener = () =>{
 
                 //update states
                 // make a spread copy of current state and add new link to it.
-                setShortenedLinks([...shortenedLinks, newShortLink]);
-                setOrignalLinks([...orignalLinks, newOriginalLink]);
+                shortLinks([...currentShortList, newShortLink]);
+                normalLinks([...currentOgList, newOriginalLink]);
+
+                // Reset Field and Update state
+                setUserInput("");
+                setLinkValid(true);
 
             }).catch(error =>{
                 console.error(error);
             })
         } else{
-            return null
+            setLinkValid(false);
         }
-        setUserInput("");
     };
 
     return(
@@ -58,11 +65,15 @@ const UrlShortener = () =>{
                          value={userInput} 
                          onChange={handleInputChange} 
                          required placeholder="Enter link"
+                         className={linkValid ? "" :"invalid-link"}
                     />
+                    {
+                        linkValid ? "" :<p className="invalid-message">Please enter a valid link</p>
+                    }
                     <button onClick={handleSubmit}>Shorten It!</button>
                 </form>
             </div> 
-                {
+                {/* {
                     <div className="results">
                         <ul>
                             {shortenedLinks.map((link, index) => {
@@ -75,7 +86,7 @@ const UrlShortener = () =>{
                             }
                         </ul>
                     </div>
-                }
+                } */}
         </section>
     )
 }

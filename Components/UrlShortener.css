@@ -1,0 +1,11 @@
+.invalid-link{
+    border: 2px red solid;
+}
+.invalid-message{
+    color: red;
+    position: absolute;
+    margin: 0;
+}
+form{
+    position: relative;
+}
