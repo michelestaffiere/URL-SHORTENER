@@ -1,5 +1,3 @@
-// imports
-
 const Navigation = () =>{
     return(
         <nav>

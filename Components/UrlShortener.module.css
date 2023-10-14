@@ -1,0 +1,27 @@
+.invalid-link{
+    border: 2px red solid;
+}
+.invalid-message{
+    color: red;
+    position: absolute;
+    margin: 0;
+}
+form{
+    position: relative;
+}
+.shortenerContainer{
+    outline: 1px blue solid;
+}
+.results {
+    outline: 1px solid red;
+}
+.results ul{
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+
+.results ul li{
+    display: flex;
+    gap: 1rem;
+}
