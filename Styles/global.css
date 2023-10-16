@@ -1,0 +1,33 @@
+:root{
+    /* colours */
+    --primaryLight:hsl(180, 66%, 49%);
+    --primaryDark:hsl(257, 27%, 26%);
+    --secondary:hsl(0, 87%, 67%);
+    --gray: hsl(0, 0%, 75%);
+    --grayViolet:hsl(257, 7%, 63%);
+    --veryDarkBlue:hsl(255, 11%, 22%);
+    --veryDarkViolet:hsl(260, 8%, 14%);
+
+    /* font rules */
+    --fontSize:1.125rem;
+    --fontFamily: 'Poppins', sans-serif;
+    --normal:500;
+    --heavy:700;
+
+    /* navigation rules */
+    --navigationGap: 1.25rem;
+    --navigationDisplay: flex;
+
+    /* wrapper max width */
+    --wrapperWidth:85%;
+}
+html{
+    font-size: var(--fontSize);
+    font-family: var(--fontFamily);
+    overflow-x: hidden;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}

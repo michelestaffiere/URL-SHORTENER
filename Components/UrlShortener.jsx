@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import styles from "./UrlShortener.module.css";
+import styles from "../Styles/UrlShortener.module.css";
 import {
   handleInputChange,
   handleSubmit,
   validateLink,
 } from "../lib/inputHandling";
+import ShortenedLinks from "./ShortendLinks";
 
 const UrlShortener = ({
   shortLinks,
   normalLinks,
   currentShortList,
   currentOgList,
+  children,
 }) => {
   //states
   const [userInput, setUserInput] = useState("");
   const [linkValid, setLinkValid] = useState(true);
 
   return (
-    <section className={styles.UrlShortener}>
-      <div className={styles.shortenerContainer}>
+    <section>
+      <div className={`${styles.wrapper} ${styles.shortenerContainer}`}>
         <form action="#">
           <input
             type="text"
@@ -30,16 +32,9 @@ const UrlShortener = ({
               handleInputChange(e, setUserInput);
             }}
             required
-            placeholder="Enter link"
-            className={linkValid ? "" : "invalid-link"}
+            placeholder="Shorten a link..."
+            className={linkValid ? "" : styles.invalidLink}
           />
-          {linkValid ? (
-            ""
-          ) : (
-            <p className="invalid-message">
-              <em>please enter a valid link</em>{" "}
-            </p>
-          )}
           <button
             onClick={(e) => {
               handleSubmit(
@@ -56,25 +51,20 @@ const UrlShortener = ({
           >
             Shorten It!
           </button>
+          {linkValid ? (
+            ""
+          ) : (
+            <>
+              <p className={styles.invalidMessage}>Please enter valid link.</p>
+            </>
+          )}
         </form>
       </div>
       {
-        <div className={styles.results}>
-          <ul>
-            {currentShortList.map((link, index) => {
-              return (
-                <li key={index}>
-                  <p className="short-link">{link}</p>
-                  <p className="long-link">{currentOgList[index]}</p>
-                  <button
-                  onClick={(e)=>{console.log(e)}
-                }
-                  >Copy Link</button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <ShortenedLinks
+          currentShortList={currentShortList}
+          currentOgList={currentOgList}
+        />
       }
     </section>
   );

@@ -1,0 +1,17 @@
+.wrapper {
+  width: var(--wrapperWidth);
+  margin: 0 auto;
+}
+
+.resultsContainer {
+  outline: 1px solid red;
+  display: flex;
+  justify-content: center;
+}
+
+.resultsContainer ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}

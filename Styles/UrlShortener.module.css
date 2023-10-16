@@ -1,0 +1,81 @@
+section {
+  margin-top: 10rem;
+  background-color: var(--gray);
+  height: 50vh;
+  position: relative;
+}
+.wrapper {
+  width: var(--wrapperWidth);
+  margin: 0 auto;
+}
+.shortenerContainer {
+  transform: translateY(-6rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 12.5rem;
+  border-radius: 15px;
+  background-color: var(--primaryDark);
+  background-image: url(../public/images/bg-shorten-desktop.svg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  width: 80%;
+}
+form input {
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  border: none;
+  width: 80%;
+  height: 3.5rem;
+  border-radius: 15px;
+  padding-left: 2rem;
+}
+/* form placeholder text */
+form input::placeholder {
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+}
+form button {
+  height: 3.5rem;
+  border-radius: 15px;
+  border: none;
+  background-color: var(--primaryLight);
+  color: white;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--heavy);
+  padding: 15px 35px;
+}
+
+/* invalid link entry */
+.invalidLink {
+  border: 2px red solid;
+}
+.invalidLink::placeholder{
+  color: red;
+}
+.invalidMessage {
+  color: red;
+  position: absolute;
+  top: 4.25rem;
+  left: 3rem;
+  margin: 0;
+}
+/* FHD desktops */
+@media only screen and (max-width: 1920px) {
+
+}
+
+
+/* smartphones  */
+@media only screen and (max-width: 375px) {
+  
+}

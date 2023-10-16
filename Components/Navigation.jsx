@@ -1,21 +1,22 @@
+import styles from '../Styles/navigation.module.css'
+
 const Navigation = () =>{
     return(
-        <nav>
+        <nav className={styles.wrapper}>
             <div>
-                <img src="" alt="" />
-                <ul className="about-links">
+                <img src="/public/images/logo.svg" alt="logo" />
+                <ul className={styles.aboutLinks}>
                     <li>
-                        <p>Features</p>
+                        Features
                     </li>
                     <li>
-                        <p>Pricing</p>
+                        Pricing
                     </li>
                     <li>
-                        <p>Resources</p>
+                       Resources
                     </li>
                 </ul>
-            </div>
-            <ul className="signin-signout">
+            <ul className={styles.logIn}>
                 <li>
                     <button>
                         Login
@@ -27,6 +28,7 @@ const Navigation = () =>{
                     </button>
                 </li>
             </ul>
+            </div>
         </nav>
     )
 }

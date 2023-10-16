@@ -5,6 +5,7 @@ import './App.css'
 import Header from '../Components/Header'
 import UrlShortener from '../Components/UrlShortener'
 import ShortenedLinks from '../Components/ShortendLinks'
+import Layout from '../Components/Layout'
 // footer
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
 
   return (
     <>
+    <Layout>
+
       <Header />
       <UrlShortener 
         shortLinks={setShortenedLinks} 
@@ -20,10 +23,7 @@ function App() {
         currentShortList ={shortenedLinks}
         currentOgList ={originalLinks}
       />
-      <ShortenedLinks 
-        currentShortList ={shortenedLinks}
-        currentOgList ={originalLinks}
-      />
+    </Layout>
 
     </>
   )
