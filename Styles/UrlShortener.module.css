@@ -16,7 +16,7 @@ section {
   height: 12.5rem;
   border-radius: 15px;
   background-color: var(--primaryDark);
-  background-image: url(../public/images/bg-shorten-desktop.svg);
+  background-image: url(/images/bg-shorten-desktop.svg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

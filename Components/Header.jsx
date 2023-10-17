@@ -9,7 +9,7 @@ const Header = () =>{
                 <button>Get Started</button>
             </div>
             <div className={styles.heroDiv}>
-                <img src="../public/images/illustration-working.svg" alt="a man working at their computer." />
+                <img src="/images/illustration-working.svg" alt="a man working at their computer." />
             </div>
         </header>
     )

@@ -3,8 +3,7 @@ import axios from "axios";
 import styles from "../Styles/UrlShortener.module.css";
 import {
   handleInputChange,
-  handleSubmit,
-  validateLink,
+  handleSubmit
 } from "../lib/inputHandling";
 import ShortenedLinks from "./ShortendLinks";
 

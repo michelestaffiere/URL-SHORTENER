@@ -4,7 +4,7 @@ const Navigation = () =>{
     return(
         <nav className={styles.wrapper}>
             <div>
-                <img src="/public/images/logo.svg" alt="logo" />
+                <img src="/images/logo.svg" alt="logo" />
                 <ul className={styles.aboutLinks}>
                     <li>
                         Features

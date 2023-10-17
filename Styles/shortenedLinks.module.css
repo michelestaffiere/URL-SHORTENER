@@ -1,17 +1,63 @@
+/* TODO */
+/* UL scroll shadow :  https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
+/* ensure ul doesnt over lap and break layout of the page when other component sections are added. */
+
 .wrapper {
   width: var(--wrapperWidth);
   margin: 0 auto;
 }
 
 .resultsContainer {
-  outline: 1px solid red;
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-height: 14rem;
+  overflow: hidden;
 }
 
-.resultsContainer ul li{
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
+.resultsContainer ul {
+  position: relative; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.resultsContainer ul li {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+  gap: 3rem;
+}
+
+.resultsContainer .shortLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--primaryLight);
+}
+
+.resultsContainer .shortLink button {
+  border: none;
+  background-color: var(--primaryLight);
+  color: white;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--heavy);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.15s ease-in-out;
+}
+
+.resultsContainer .shortLink .copied {
+  background-color: var(--primaryDark);
 }
