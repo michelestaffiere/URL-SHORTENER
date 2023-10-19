@@ -5,7 +5,7 @@ const Header = () =>{
         <header className={styles.wrapper}>
             <div className={styles.statement}>
                 <h1>More than just shorter links</h1>
-                <p>Build your brand's recognitions and get detailed <br /> insights on how your links are performing</p>
+                <p>Build your brand's recognitions and get detailed insights on how your links are performing</p>
                 <button>Get Started</button>
             </div>
             <div className={styles.heroDiv}>

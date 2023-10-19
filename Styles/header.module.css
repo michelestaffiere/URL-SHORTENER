@@ -37,7 +37,7 @@ header {
   transition: 0.15s ease-in-out;
 }
 
-.statement button:hover{
+.statement button:hover {
   filter: brightness(1.125);
   cursor: pointer;
 }
@@ -60,4 +60,37 @@ header {
   .heroDiv img {
     width: 130%;
   }
+}
+
+/* FHD desktops */
+@media only screen and (max-width: 1920px) {
+  .statement h1 {
+    font-size: 5rem;
+  }
+}
+
+/* small screens  */
+@media only screen and (max-width: 1300px) {
+  header {
+    flex-direction: column;
+  }
+  header .statement {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    order: 1;
+  }
+  header .statement h1 {
+    font-size: 2rem;
+  }
+  header .statement p{
+    font-size: .9rem;
+  }
+  header .heroDiv{
+    transform: translateX(0);
+  }
+  header .heroDiv img{
+    width: 140%;
+  }
+
 }

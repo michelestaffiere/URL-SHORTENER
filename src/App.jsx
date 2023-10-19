@@ -2,11 +2,12 @@ import {useState } from 'react'
 import './App.css'
 
 
+import Layout from '../Components/Layout'
 import Header from '../Components/Header'
 import UrlShortener from '../Components/UrlShortener'
-import ShortenedLinks from '../Components/ShortendLinks'
-import Layout from '../Components/Layout'
-// footer
+import Footer from '../Components/Footer'
+import Features from '../Components/Features'
+import CtaBanner from '../Components/CtaBanner'
 
 function App() {
   const [shortenedLinks, setShortenedLinks] = useState([]);
@@ -15,7 +16,6 @@ function App() {
   return (
     <>
     <Layout>
-
       <Header />
       <UrlShortener 
         shortLinks={setShortenedLinks} 
@@ -23,8 +23,10 @@ function App() {
         currentShortList ={shortenedLinks}
         currentOgList ={originalLinks}
       />
+      <Features />
+      <CtaBanner />
+      <Footer />
     </Layout>
-
     </>
   )
 }

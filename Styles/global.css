@@ -1,5 +1,6 @@
 :root{
     /* colours */
+    --sectionBackground:#f0f1f6;
     --primaryLight:hsl(180, 66%, 49%);
     --primaryDark:hsl(257, 27%, 26%);
     --secondary:hsl(0, 87%, 67%);
@@ -20,6 +21,7 @@
 
     /* wrapper max width */
     --wrapperWidth:85%;
+    --mobileWidth:95%;
 }
 html{
     font-size: var(--fontSize);
@@ -30,4 +32,13 @@ html{
 body{
     margin: 0;
     padding: 0;
+}
+
+@media only screen and (max-width: 1300px){
+   body{
+    overflow: hidden;
+   } 
+   html{
+    overflow-x: hidden;
+   }
 }

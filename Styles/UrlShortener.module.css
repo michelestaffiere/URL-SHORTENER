@@ -1,7 +1,6 @@
 section {
   margin-top: 10rem;
-  background-color: var(--gray);
-  height: 50vh;
+  background-color: var(--sectionBackground);
   position: relative;
 }
 .wrapper {
@@ -15,6 +14,7 @@ section {
   align-items: center;
   height: 12.5rem;
   border-radius: 15px;
+  filter: drop-shadow(-5px 5px 5px var(--primaryDark));
   background-color: var(--primaryDark);
   background-image: url(/images/bg-shorten-desktop.svg);
   background-position: center;
@@ -59,7 +59,7 @@ form button {
 .invalidLink {
   border: 2px red solid;
 }
-.invalidLink::placeholder{
+.invalidLink::placeholder {
   color: red;
 }
 .invalidMessage {
@@ -71,11 +71,37 @@ form button {
 }
 /* FHD desktops */
 @media only screen and (max-width: 1920px) {
-
+  .shortenerContainer {
+    width: 70%;
+  }
+  form button {
+    font-size: calc(var(--fontSize) - 1px);
+    padding: 5px 20px;
+  }
 }
 
-
-/* smartphones  */
-@media only screen and (max-width: 375px) {
-  
+/* small screens  */
+@media only screen and (max-width: 1300px) {
+  .shortenerContainer {
+    width: 90%;
+    height: 10rem;
+    transform: translateY(-5rem);
+  }
+  .shortenerContainer form {
+    flex-direction: column;
+    width: 90%;
+  }
+  .shortenerContainer form button,
+  .shortenerContainer form input {
+    padding: 5px 5px;
+    width: 100%;
+    height: 3rem;
+    border-radius: 5px;
+    box-sizing:border-box ;
+  }
+  .invalidMessage{
+    transform: scale(.9);
+    top: 3rem;
+    left: -7px;
+  }
 }
