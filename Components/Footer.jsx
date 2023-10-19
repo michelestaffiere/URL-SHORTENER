@@ -6,7 +6,7 @@ function Footer() {
       <div className={styles.wrapper}>
         <div className={styles.footerContainer}>
           <div>
-            <img className={styles.logo} src="../public/images/logo-light.svg" alt="shortly logo" />
+            <img className={styles.logo} src="/images/logo-light.svg" alt="shortly logo" />
           </div>
           <div className={styles.footerLists}>
             <div className={styles.listContainer}>
