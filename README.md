@@ -7,7 +7,7 @@ As of 2023-10-18 the project is, I would say 95% completed. There are some featu
 
 ## Shareaholic - Link shortener API
 #### 
-The API I picked for this project is URL Shortener by big lobster on RapidAi - The api instructed to use for this project was (and as of writting this still is) down and inoperable. 
+The API I picked for this project is URL Shortener by big lobster on RapidApi - The api instructed to use for this project was (and as of writting this still is) down and inoperable. 
 
 The API can be found here - [URL Shortener Service API](https://rapidapi.com/BigLobster/api/url-shortener-service/)
 
