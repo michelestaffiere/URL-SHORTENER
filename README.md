@@ -2,6 +2,8 @@
 
 This project is one of the challenges posted on Front End Mentor - the goal of the project is to complete a design conversion from a given template and to integrate with the shrtcode API. All assets are provided by Front End Mentor
 
+As of 2023-10-18 the project is, I would say 95% completed. There are some features I still have to add and some I have planned as stretch goals. Feel free to watch the repo to keep up to date with all changes to dev and main branches.
+
 
 ## Shareaholic - Link shortener API
 #### 
