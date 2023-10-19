@@ -1,82 +1,71 @@
-import { useEffect,useState } from "react";
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import styles from "../Styles/UrlShortener.module.css";
+import {
+  handleInputChange,
+  handleSubmit
+} from "../lib/inputHandling";
+import ShortenedLinks from "./ShortendLinks";
 
+const UrlShortener = ({
+  shortLinks,
+  normalLinks,
+  currentShortList,
+  currentOgList,
+  children,
+}) => {
+  //states
+  const [userInput, setUserInput] = useState("");
+  const [linkValid, setLinkValid] = useState(true);
 
-
-const UrlShortener = () =>{
-    //states
-    const [shortenedLinks, setShortenedLinks] = useState([]);
-    const [orignalLinks, setOrignalLinks] = useState([]);
-    const [userInput, setUserInput] = useState("");
-    
-    //variables
-
-    const handleInputChange = (e) =>{
-        setUserInput(e.target.value)
-    };
-    const validateLink = (link) =>{
-        try{
-            new URL(link);
-            return true;
-        } catch (error){
-            return false;
-        }
-    };
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        if(validateLink(userInput) === true){
-            axios({
-                method:'Get',
-                url: `https://api.shrtco.de/v2/shorten?url=${userInput}`
-            }).then(res=>{
-                // new links to add to state
-                const newShortLink = res.data.result.full_short_link;
-                const newOriginalLink = res.data.result.original_link;
-
-                //update states
-                // make a spread copy of current state and add new link to it.
-                setShortenedLinks([...shortenedLinks, newShortLink]);
-                setOrignalLinks([...orignalLinks, newOriginalLink]);
-
-            }).catch(error =>{
-                console.error(error);
-            })
-        } else{
-            return null
-        }
-        setUserInput("");
-    };
-
-    return(
-        <section className="UrlShortener">
-            <div className="shortener-container">
-                <form action="#">
-                    <input
-                         type="text" 
-                         name="link" 
-                         id="link" 
-                         value={userInput} 
-                         onChange={handleInputChange} 
-                         required placeholder="Enter link"
-                    />
-                    <button onClick={handleSubmit}>Shorten It!</button>
-                </form>
-            </div> 
-                {
-                    <div className="results">
-                        <ul>
-                            {shortenedLinks.map((link, index) => {
-                                return(
-                                    <li key={index}>
-                                        <p className="short-link">{link}</p>
-                                        <p className="long-link">{orignalLinks[index]}</p>
-                                    </li>
-                                )})
-                            }
-                        </ul>
-                    </div>
-                }
-        </section>
-    )
-}
-export default UrlShortener
+  return (
+    <section>
+      <div className={`${styles.wrapper} ${styles.shortenerContainer}`}>
+        <form action="#">
+          <input
+            type="text"
+            name="link"
+            id="link"
+            value={userInput}
+            onChange={(e) => {
+              handleInputChange(e, setUserInput);
+            }}
+            required
+            placeholder="Shorten a link..."
+            className={linkValid ? "" : styles.invalidLink}
+          />
+          <button
+            onClick={(e) => {
+              handleSubmit(
+                e,
+                userInput,
+                setUserInput,
+                currentShortList,
+                shortLinks,
+                currentOgList,
+                normalLinks,
+                setLinkValid
+              );
+            }}
+          >
+            Shorten It!
+          </button>
+          {linkValid ? (
+            ""
+          ) : (
+            <>
+              <p className={styles.invalidMessage}>Please enter valid link.</p>
+            </>
+          )}
+        </form>
+      </div>
+      {
+        <ShortenedLinks
+          currentShortList={currentShortList}
+          currentOgList={currentOgList}
+        />
+      }
+    </section>
+  );
+};
+export default UrlShortener;

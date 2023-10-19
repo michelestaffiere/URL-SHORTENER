@@ -1,0 +1,41 @@
+.banner {
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primaryDark);
+  background-image: url("../public/images/bg-shorten-desktop.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 1rem 0;
+}
+.banner h2 {
+  font-size: 2rem;
+  color: white;
+}
+.banner button {
+  border: none;
+  background-color: var(--primaryLight);
+  color: white;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--heavy);
+  padding: 5px 20px;
+  border-radius: 30px;
+  transition: 0.15s ease-in-out;
+}
+.banner button:hover {
+  filter: brightness(1.125);
+  cursor: pointer;
+}
+
+/* small screens  */
+@media only screen and (max-width: 1300px) {
+  .banner {
+    height: auto;
+  }
+  .banner h2 {
+    font-size: 1.25rem;
+  }
+}

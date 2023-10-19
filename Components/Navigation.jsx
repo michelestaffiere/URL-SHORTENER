@@ -1,35 +1,91 @@
-// imports
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+import styles from "../Styles/navigation.module.css";
 
-const Navigation = () =>{
-    return(
-        <nav>
-            <div>
-                <img src="" alt="" />
-                <ul className="about-links">
-                    <li>
-                        <p>Features</p>
-                    </li>
-                    <li>
-                        <p>Pricing</p>
-                    </li>
-                    <li>
-                        <p>Resources</p>
-                    </li>
-                </ul>
-            </div>
-            <ul className="signin-signout">
-                <li>
-                    <button>
-                        Login
-                    </button>
-                </li>
-                <li>
-                    <button>
-                        Sing Up
-                    </button>
-                </li>
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef(null);
+
+  const navClasses = isOpen
+    ? `${styles.navContainer} ${styles.open} `
+    : `${styles.navContainer}`;
+
+  const menuHandling = () => {
+    if(isOpen === false){
+        setIsOpen(true)
+    }else{
+        setIsOpen(false)
+    }
+  };
+  const outsideClickHandling = (e) =>{
+    if (navRef.current && !navRef.current.contains(e.target)){
+        setIsOpen(false);
+    }
+  };
+  useEffect(()=>{
+    document.addEventListener("click",outsideClickHandling);
+  },[])
+
+  return (
+    <>
+      <nav className={styles.wrapper}>
+        <img src="/images/logo.svg" alt="logo" />
+        <div className={navClasses} ref={navRef}>
+          <div>
+            <ul className={styles.aboutLinks}>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                Features
+              </li>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                Pricing
+              </li>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                Resources
+              </li>
             </ul>
-        </nav>
-    )
-}
-export default Navigation
+          </div>
+          <div>
+            <ul className={styles.logIn}>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                <button>Login</button>
+              </li>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                <button>Sing Up</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button
+          className={styles.hamburger}
+          onClick={(e) => {
+            e.stopPropagation();
+            menuHandling();
+          }}
+        >
+          <img src="/images/hamburger.svg" alt="" />
+        </button>
+      </nav>
+    </>
+  );
+};
+export default Navigation;

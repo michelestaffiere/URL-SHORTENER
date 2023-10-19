@@ -1,0 +1,109 @@
+/* TODO
+/* UL scroll shadow :  https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
+/* ensure ul doesnt over lap and break layout of the page when other component sections are added. */
+
+.wrapper {
+  width: var(--wrapperWidth);
+  margin: 0 auto;
+}
+
+.resultsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.resultsContainer .cta {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50px;
+  background-color: var(--veryDarkViolet);
+  filter: drop-shadow(0 0 0.25rem var(--primaryDark));
+}
+
+.resultsContainer ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.75rem 0;
+  max-height: 30rem;
+  overflow-y: scroll;
+}
+
+.resultsContainer ul li {
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+  gap: 3rem;
+}
+
+.resultsContainer .shortLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--primaryLight);
+}
+
+.resultsContainer .shortLink button {
+  border: none;
+  background-color: var(--primaryLight);
+  color: white;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--heavy);
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: 0.15s ease-in-out;
+}
+
+.resultsContainer .shortLink .copied {
+  background-color: var(--primaryDark);
+}
+
+
+/* small screens  */
+@media only screen and (max-width: 1300px) {
+  .wrapper{
+    width: var(--mobileWidth);
+  }
+  .resultsContainer ul {
+    padding: 0;
+  }
+
+  .resultsContainer ul li {
+    padding: 0;
+    display: block;
+    width: 95%;
+    border-radius: 5px;
+  }
+  .resultsContainer ul li .longLink p,
+  .resultsContainer ul li .shortLink p  {
+    margin: 1rem 0 1rem 1rem;
+  }
+  .resultsContainer ul li .longLink p{
+    margin-bottom: .25rem;
+  }
+  .resultsContainer .shortLink {
+    flex-direction: column;
+    gap:0;
+    width: 100%;
+    border-top: 1px solid rgba(128, 128, 128, 0.427);
+  }
+  .resultsContainer .shortLink p{
+    align-self: flex-start;
+  }
+  .resultsContainer .shortLink button{
+    width: 90%;
+    margin: 0 1rem 1rem;
+    border-radius: 5px;
+  }
+}

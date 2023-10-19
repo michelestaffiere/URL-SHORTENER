@@ -1,0 +1,138 @@
+.wrapper {
+  width: var(--wrapperWidth);
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+nav div {
+  display: var(--navigationDisplay);
+  align-items: center;
+}
+nav div {
+  width: 100%;
+}
+.hamburger {
+  display: none;
+}
+
+/* Nav links */
+.aboutLinks {
+  display: var(--navigationDisplay);
+  flex: 2;
+  justify-content: flex-start;
+  gap: var(--navigationGap);
+}
+
+.aboutLinks li {
+  list-style: none;
+  color: var(--grayViolet);
+  font-size: var(--fontSize);
+  transition: 0.1s ease-in;
+}
+
+.aboutLinks li:hover {
+  color: var(--veryDarkViolet);
+  cursor: pointer;
+}
+
+/* Login area */
+
+.logIn {
+  display: var(--navigationDisplay);
+  justify-content: end;
+  gap: var(--navigationGap);
+  flex: 1;
+}
+.logIn li {
+  list-style: none;
+}
+
+.logIn li button {
+  border: none;
+  font-size: var(--fontSize);
+  font-family: var(--fontFamily);
+  font-weight: var(--heavy);
+  padding: 5px 20px;
+  border-radius: 30px;
+  transition: 0.15s ease-in-out;
+}
+
+.logIn li:nth-child(1) button {
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--grayViolet);
+}
+.logIn li:nth-child(2) button {
+  background-color: var(--primaryLight);
+  color: white;
+}
+
+.logIn li:nth-child(1) button:hover {
+  color: var(--veryDarkViolet);
+  cursor: pointer;
+}
+
+.logIn li:nth-child(2) button:hover {
+  filter: brightness(1.125);
+  cursor: pointer;
+}
+
+/* smallscreens  */
+@media only screen and (max-width: 1300px) {
+  nav {
+    padding-top: 1rem;
+    justify-content: flex-start;
+  }
+  .navContainer div ul {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hamburger {
+    display: block;
+    position: fixed;
+    z-index: 98;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    right:1rem;
+    top:.25rem;
+  }
+  .hamburger img {
+    width: 40px;
+  }
+  .navContainer {
+    position: fixed;
+    z-index: 99;
+    width: 80%;
+    height: 20rem;
+    border-radius: 10px;
+    transform: translateY(-15rem);
+    background-color: var(--primaryDark);
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.25s ease-in-out;
+    padding: 0 1rem;
+  }
+  .open {
+    transform: translateY(12rem);
+  }
+  .logIn {
+    border-top: 1px solid rgba(255, 255, 255, 0.128);
+  }
+  .logIn li:nth-child(1) button {
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+  }
+  .logIn li:nth-child(2) button {
+    padding: 10px 125px;
+    color: white;
+  }
+}

@@ -1,16 +1,32 @@
-import { useState } from 'react'
+import {useState } from 'react'
 import './App.css'
 
-import Navigation from '../Components/Navigation'
+
+import Layout from '../Components/Layout'
 import Header from '../Components/Header'
 import UrlShortener from '../Components/UrlShortener'
+import Footer from '../Components/Footer'
+import Features from '../Components/Features'
+import CtaBanner from '../Components/CtaBanner'
 
 function App() {
+  const [shortenedLinks, setShortenedLinks] = useState([]);
+  const [originalLinks, setOriginalLinks] = useState([]);
+
   return (
     <>
-      <Navigation />
+    <Layout>
       <Header />
-      <UrlShortener />
+      <UrlShortener 
+        shortLinks={setShortenedLinks} 
+        normalLinks={setOriginalLinks}
+        currentShortList ={shortenedLinks}
+        currentOgList ={originalLinks}
+      />
+      <Features />
+      <CtaBanner />
+      <Footer />
+    </Layout>
     </>
   )
 }
