@@ -7,9 +7,9 @@ As of 2023-10-18 the project is, I would say 95% completed. There are some featu
 
 ## Shareaholic - Link shortener API
 #### 
-The API I picked for this project was Shareaholics Link Shortener API - The project brief instucts the usage of shrtcode's Link shortening API but at the time of developing this project the API was down more often than not so the change was nessecary. 
+The API I picked for this project is URL Shortener by big lobster on RapidAi - The api instructed to use for this project was (and as of writting this still is) down and inoperable. 
 
-The API can be found here - https://www.shareaholic.com/api/shortener/
+The API can be found here - [URL Shortener Service API](https://rapidapi.com/BigLobster/api/url-shortener-service/)
 
 ## Objective
 - Get more comfortable developing small scale sites using React.js
