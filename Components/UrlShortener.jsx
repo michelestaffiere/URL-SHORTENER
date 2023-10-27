@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../Styles/UrlShortener.module.css";
-import {
-  handleInputChange,
-  handleSubmit
-} from "../lib/inputHandling";
+import { handleInputChange, handleSubmit } from "../lib/inputHandling";
 import ShortenedLinks from "./ShortendLinks";
+import SavedLinks from "./savedLinks";
 
 const UrlShortener = ({
   shortLinks,
@@ -17,6 +15,9 @@ const UrlShortener = ({
   //states
   const [userInput, setUserInput] = useState("");
   const [linkValid, setLinkValid] = useState(true);
+
+  const [nomralLinksDuringSession, setNormalLinksDuringSession] = useState([]);
+  const [shortLinksDuringSession, setShortLinksDuringSession] = useState([]);
 
   return (
     <section>
@@ -59,12 +60,20 @@ const UrlShortener = ({
           )}
         </form>
       </div>
-      {
-        <ShortenedLinks
-          currentShortList={currentShortList}
-          currentOgList={currentOgList}
-        />
-      }
+      <SavedLinks
+        shortDuringSessionLinks={shortLinksDuringSession}
+        normalDuringSessionLinks={nomralLinksDuringSession}
+        setNormalLinksDuringSession={setNormalLinksDuringSession}
+        setShortLinksDuringSession={setShortLinksDuringSession}
+      />
+      <ShortenedLinks
+        currentShortList={currentShortList}
+        currentOgList={currentOgList}
+        shortDuringSessionLinks={shortLinksDuringSession}
+        normalDuringSessionLinks={nomralLinksDuringSession}
+        setNormalLinksDuringSession={setNormalLinksDuringSession}
+        setShortLinksDuringSession={setShortLinksDuringSession}
+      />
     </section>
   );
 };
