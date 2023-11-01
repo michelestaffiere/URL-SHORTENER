@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { auth } from "../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
+import styles from "../Styles/entryPortal.module.css"
 
 
 const SignIn = ({navigateTo,setUserUid}) => {
@@ -24,8 +26,8 @@ const SignIn = ({navigateTo,setUserUid}) => {
   };
 
   return (
-    <div>
-      <p>LogIn</p>
+    <div className={`${styles.container} ${styles.wrapper}`}>
+      <p>Welcome Back👋</p>
       <form onSubmit={handleSignIn}>
           <input 
           type="email" 
@@ -42,6 +44,7 @@ const SignIn = ({navigateTo,setUserUid}) => {
         <button type="submit">Login</button>
       </form>
         {errorMessage ? <p>Incorrect Email or Password, please try again.</p> : null}
+        <p>Don't have an Account? , <Link to="/signup">Sign Up</Link></p>
     </div>
   );
 };

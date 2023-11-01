@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from "react-router-dom"; 
+import {Link} from "react-router-dom"; 
 import { useState, useRef, useEffect } from "react";
 import AuthDetails from "./AuthDetails.jsx"
 import styles from "../Styles/navigation.module.css";
@@ -56,10 +56,10 @@ const Navigation = ({setUserUid , userUid}) => {
               {userUid === "" ? (
                 <>
                 <li onClick={() => {menuHandling()}} >
-                  <Link to="/signin">Log In</Link>
+                  <Link to="/signup">Log In</Link>
                 </li>
                 <li onClick={() => {  menuHandling()}}>
-                  <Link to="/signup">Sign Up</Link>
+                  <Link to="/signin">Sign Up</Link>
                 </li>
                 </>
               ):null}

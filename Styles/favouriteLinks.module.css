@@ -1,0 +1,35 @@
+.container {
+}
+.favouriteList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.75rem 0;
+  max-height: 30rem;
+  overflow-y: scroll;
+}
+
+.shortLink {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primaryLight);
+  }
+  .shortLink button {
+    border: none;
+    background-color: var(--primaryLight);
+    color: white;
+    font-size: var(--fontSize);
+    font-family: var(--fontFamily);
+    font-weight: var(--heavy);
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.15s ease-in-out;
+  }
+  .resultsContainer .shortLink .copied {
+    background-color: var(--primaryDark);
+  }

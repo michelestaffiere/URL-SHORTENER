@@ -1,0 +1,50 @@
+.wrapper {
+    width: var(--wrapperWidth);
+    margin: 0 auto;
+  }
+
+  .container{
+    height: 80vh;
+    height: 80svh;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(images/bg-shorten-desktop.svg);
+    background-color: hsl(258, 73%, 19%);
+    background-size: cover;
+    background-position: center;
+  }
+  .container p{
+    color: white;
+  }
+  .container a{
+    font-weight: 700;
+    color: var(--primaryLight);
+  }
+  .container form{
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: rgba(227, 227, 227, 0.059);
+    filter: drop-shadow(0px 1px 1px #000000);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+  }
+  .container form input{
+    background-color: var(--grayViolet);
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .container form button{
+    width: 100%;
+  }
+
+  @media only screen and (max-width:1300px){
+    .container form{
+      padding: 1rem;
+      width: 70%;
+    }
+  }

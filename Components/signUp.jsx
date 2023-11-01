@@ -1,7 +1,9 @@
 import { useState } from "react"; 
+import { Link } from "react-router-dom";
 import { auth, database } from "../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {ref,set } from "firebase/database";
+import styles from "../Styles/entryPortal.module.css"
 
 
 const SignUp = ({navigateTo,setUserUid}) => {
@@ -25,8 +27,8 @@ const SignUp = ({navigateTo,setUserUid}) => {
   };
 
   return (
-    <div>
-      <p>Create Account</p>
+    <div className={`${styles.container} ${styles.wrapper}`}>
+      <p>Create Account 🙌</p>
       <form onSubmit={handleSignUp}>
         <input
           type="email"
@@ -46,6 +48,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
         />
         <button type="submit">Sign Up</button>
       </form>
+      <p>Already have an account?, <Link to="/signin">Sign In</Link></p>
     </div>
   );
 };

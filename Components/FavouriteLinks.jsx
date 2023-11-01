@@ -1,6 +1,7 @@
 import { onValue, ref, getDatabase } from "firebase/database";
 import { useEffect, useState } from "react";
 import { dbRef } from "../lib/firebase";
+import styles from "../Styles/favouriteLinks.module.css";
 
 const FavouriteLinks = ({ userUid }) => {
   const [linksFromDb, setLinksFromDb] = useState({});
@@ -11,29 +12,36 @@ const FavouriteLinks = ({ userUid }) => {
     onValue(userDbRef, (snapShot) => {
       const data = snapShot.val();
       setLinksFromDb(data);
-    })
+    });
   }, [userUid]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log(linksFromDb);
-  },[linksFromDb])
-
+  }, [linksFromDb]);
 
   return (
     <>
       {linksFromDb === null ? (
-        <p>No links</p>
+        <p>Sign In to see your personal links!</p>
       ) : (
-        <>
-           {Object.entries(linksFromDb).map(([key, value]) => {
-          return (
-            <div key={key}>
-              <p>Long: {value.long}</p>
-              <p>Short: {value.short}</p>
-            </div>
-          );
-        })}
-        </>
+        <div className={styles.container}>
+          <ul className={styles.favouriteList}>
+            {Object.entries(linksFromDb).map(([key, value]) => {
+              return (
+                <li key={key}>
+                  <div className={styles.longLink}>
+                    <p>{value.long}</p>
+                  </div>
+                  <div className={styles.shortLink}>
+                    <p>{value.short}</p>
+                    <button>Remove</button>
+                    <button>Copy</button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
     </>
   );

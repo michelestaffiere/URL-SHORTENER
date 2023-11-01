@@ -1,12 +1,7 @@
-/* TODO
-/* UL scroll shadow :  https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
-/* ensure ul doesnt over lap and break layout of the page when other component sections are added. */
-
 .wrapper {
   width: var(--wrapperWidth);
   margin: 0 auto;
 }
-
 .resultsContainer {
   display: flex;
   justify-content: center;
