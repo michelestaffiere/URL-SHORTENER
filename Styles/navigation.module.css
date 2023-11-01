@@ -51,7 +51,8 @@ nav div {
   list-style: none;
 }
 
-.logIn li Link {
+.logIn li a {
+  text-decoration: none;
   border: none;
   font-size: var(--fontSize);
   font-family: var(--fontFamily);
@@ -59,23 +60,24 @@ nav div {
   padding: 5px 20px;
   border-radius: 30px;
   transition: 0.15s ease-in-out;
-}
-
-.logIn li:nth-child(1) Link {
-  background-color: rgba(255, 255, 255, 0);
   color: var(--grayViolet);
 }
-.logIn li:nth-child(2) Link {
+
+.logIn li:nth-child(2) a {
+  background-color: rgba(255, 255, 255, 0);
+
+}
+.logIn li:nth-child(3) a {
   background-color: var(--primaryLight);
   color: white;
 }
 
-.logIn li:nth-child(1) Link:hover {
+.logIn li:nth-child(1) a:hover {
   color: var(--veryDarkViolet);
   cursor: pointer;
 }
 
-.logIn li:nth-child(2) Link:hover {
+.logIn li:nth-child(2) a:hover {
   filter: brightness(1.125);
   cursor: pointer;
 }

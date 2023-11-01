@@ -15,12 +15,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
       const userRef = ref(database, `users/${uid}`);
       const data = {
         email: email,
-        savedLinks: {
-          dummyLink:{
-            long:"dummyString",
-            short:"dummyString"
-          }
-        },
+        savedLinks: {}
       };
       set(userRef, data).then(() => {
         setUserUid(uid);

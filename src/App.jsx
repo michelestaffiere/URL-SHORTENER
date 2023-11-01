@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <div className="Page">
-        <Navigation setUserUid={setUserUid} />
+        <Navigation setUserUid={setUserUid} userUid={userUid} />
         <Routes>
           <Route path="/" element={<Main userUid={userUid} />} />
           <Route path="/signup" element={<SignUp navigateTo={navigateTo} setUserUid={setUserUid} />} />

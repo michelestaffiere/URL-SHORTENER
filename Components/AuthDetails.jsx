@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { auth } from "../lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
+import styles from "../Styles/authDetails.module.css";
+
 const AuthDetails = ({setUserUid}) => {
   const [authUser, setAuthUser] = useState(null);
- 
- 
- 
- 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -15,7 +13,6 @@ const AuthDetails = ({setUserUid}) => {
       } else {
         setAuthUser(null);
       }
-
       return() =>{
         listen();
       }
@@ -36,7 +33,18 @@ const AuthDetails = ({setUserUid}) => {
   }
   return (
     <>
-      <div>{authUser ? (<><p>{`${authUser.email}`}</p> <br></br><p><button onClick={userSignOut}>Sign Out</button></p></>) : (<p>Signed Out</p>)}</div>
+      <div className={styles.user}>
+        {authUser ? 
+          (
+          <>
+          <p>{`${authUser.email}`}</p> 
+          <br></br>
+          <p><button onClick={userSignOut}>Sign Out</button></p>
+          </>
+          ) : 
+          (null)
+        }
+      </div>
     </>
   );
 };

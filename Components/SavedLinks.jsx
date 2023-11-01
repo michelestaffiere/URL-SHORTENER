@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { readLocalStorage, removeHandling } from "../lib/localStorageHandling";
 import { copyToClickBoard } from "../lib/copyToClickBoard";
-import { database } from "../lib/firebase";
-import { ref, set, push } from "firebase/database";
+import { database,dbRef } from "../lib/firebase";
+import { ref,push,get,child, orderByChild, equalTo,query} from "firebase/database";
 import styles from "../Styles/savedLinks.module.css";
 
 const SavedLinks = ({
@@ -20,9 +20,6 @@ const SavedLinks = ({
   const [linkCopied, setLinkCopied] = useState([]);
   const [buttonClicked, setButtonClicked] = useState({});
 
-  //reference to users instance in realtime database
-  const usersSavedLinks = ref(database, `users/${userUid}/savedLinks`);
-
   const handleCopy = (e, link) => {
     copyToClickBoard(link);
     setLinkCopied([...linkCopied, link]);
@@ -30,13 +27,34 @@ const SavedLinks = ({
   };
 
   const handleFavourite = (e) => {
-    const firebaseObj = push(usersSavedLinks,
-      {
-        long:`${e.target.parentNode.previousSibling.innerText}`,
-        short:`${e.target.previousSibling.innerText}`
+    if (userUid === "") return;
+    const shortLinkToCheck = e.target.previousSibling.innerText;
+    // Reference to the savedLinks node for the user
+    const savedLinksRef = child(dbRef, `users/${userUid}/savedLinks`);
+    // First, read the existing data in the savedLinks node
+    get(savedLinksRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const isDuplicate = Object.values(data).some((item) => item.short === shortLinkToCheck);
+        if (!isDuplicate) {
+          // No duplicate found, add the new link to savedLinks
+          push(savedLinksRef, {
+            long: e.target.parentNode.previousSibling.innerText,
+            short: shortLinkToCheck,
+          });
+        } else {
+          return // Break out - duplicate found.
+        }
+      } else {
+        // No data exists, for this user so push it anyways to create the users savedLinks collection.
+        push(savedLinksRef, {
+          long: e.target.parentNode.previousSibling.innerText,
+          short: shortLinkToCheck,
+        });
       }
-      );
+    });
   };
+  
 
   useEffect(() => {
     let currentStorage = readLocalStorage();
@@ -57,36 +75,22 @@ const SavedLinks = ({
     if (intialCheck) {
       let _shortLinks = [...shortLinks];
       let _longLinks = [...longLinks];
-
-      _longLinks.push(
-        normalDuringSessionLinks[normalDuringSessionLinks.length - 1]
-      );
-
-      _shortLinks.push(
-        shortDuringSessionLinks[shortDuringSessionLinks.length - 1]
-      );
-
+      _longLinks.push(normalDuringSessionLinks[normalDuringSessionLinks.length - 1]);
+      _shortLinks.push(shortDuringSessionLinks[shortDuringSessionLinks.length - 1]);
       setLongLinks(_longLinks);
       setShortLinks(_shortLinks);
     }
   }, [shortDuringSessionLinks, normalDuringSessionLinks]);
+
   return (
     <div className={`${styles.wrapper} ${styles.savedLinksContainer}`}>
       {!show ? (
-        <button
-          onClick={() => {
-            setShow(true);
-          }}
-        >
+        <button onClick={() => {setShow(true)}}>
           Show Saved Links
         </button>
       ) : (
         <>
-          <button
-            onClick={() => {
-              setShow(false);
-            }}
-          >
+          <button onClick={() => {setShow(false)}}>
             Hide
           </button>
           <ul>
@@ -96,12 +100,11 @@ const SavedLinks = ({
                   <div className={styles.normal}>
                     <p>{link}</p>
                   </div>
+
+
                   <div className={styles.short}>
                     <p>{shortLinks[index]}</p>
-                    {/* shortLink = e.target.previousSibling.innerText 
-                        longLink = e.target.parentNode.previousSibling.innerText
-                    */}
-                    <button onClick={(e) => handleFavourite(e)}>Favourite</button>
+                    <button disabled={!userUid} onClick={(e) => handleFavourite(e)}>Favourite</button>
                     <button onClick={(e) => console.log(e)}>remove</button>
                     <button
                       className={buttonClicked[link] ? styles.copied : ""}

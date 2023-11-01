@@ -1,0 +1,30 @@
+/* .user {
+  outline: 1px solid red;
+} */
+
+.user p {
+  color: var(--grayViolet);
+}
+.user p button {
+  margin-left: 1rem;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+  font-family: var(--fontFamily);
+  padding: 2.5px 10px;
+  border-radius: 30px;
+  color: var(--primaryDark);
+  background-color: var(--grayViolet);
+  cursor: pointer;
+}
+
+@media only screen and (max-width:1300px){
+    .user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
