@@ -1,37 +1,25 @@
-import {useState } from 'react'
-import './App.css'
-
-
-import Layout from '../Components/Layout'
-import Header from '../Components/Header'
-import UrlShortener from '../Components/UrlShortener'
-import SavedLinks from "../Components/SavedLinks";
-import Footer from '../Components/Footer'
-import Features from '../Components/Features'
-import CtaBanner from '../Components/CtaBanner'
-
-
+import { useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import "./App.css";
+import Navigation from "../Components/Navigation.jsx";
+import Main from "../Components/main";
+import SignUp from "../Components/signUp";
+import SignIn from "../Components/signIn";
 function App() {
-  const [shortenedLinks, setShortenedLinks] = useState([]);
-  const [originalLinks, setOriginalLinks] = useState([]);
-
+  const navigateTo = useNavigate();
+  const [userUid,setUserUid] = useState("");
   return (
     <>
-    <Layout>
-      <Header />
-      <UrlShortener 
-        shortLinks={setShortenedLinks} 
-        normalLinks={setOriginalLinks}
-        currentShortList ={shortenedLinks}
-        currentOgList ={originalLinks}
-      />
-      {/* <SavedLinks /> */}
-      <Features />
-      <CtaBanner />
-      <Footer />
-    </Layout>
+      <div className="Page">
+        <Navigation setUserUid={setUserUid} />
+        <Routes>
+          <Route path="/" element={<Main userUid={userUid} />} />
+          <Route path="/signup" element={<SignUp navigateTo={navigateTo} setUserUid={setUserUid} />} />
+          <Route path="/signin" element={<SignIn navigateTo={navigateTo}  setUserUid={setUserUid} />} />
+        </Routes>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -51,7 +51,7 @@ nav div {
   list-style: none;
 }
 
-.logIn li button {
+.logIn li Link {
   border: none;
   font-size: var(--fontSize);
   font-family: var(--fontFamily);
@@ -61,21 +61,21 @@ nav div {
   transition: 0.15s ease-in-out;
 }
 
-.logIn li:nth-child(1) button {
+.logIn li:nth-child(1) Link {
   background-color: rgba(255, 255, 255, 0);
   color: var(--grayViolet);
 }
-.logIn li:nth-child(2) button {
+.logIn li:nth-child(2) Link {
   background-color: var(--primaryLight);
   color: white;
 }
 
-.logIn li:nth-child(1) button:hover {
+.logIn li:nth-child(1) Link:hover {
   color: var(--veryDarkViolet);
   cursor: pointer;
 }
 
-.logIn li:nth-child(2) button:hover {
+.logIn li:nth-child(2) Link:hover {
   filter: brightness(1.125);
   cursor: pointer;
 }
@@ -126,12 +126,12 @@ nav div {
   .logIn {
     border-top: 1px solid rgba(255, 255, 255, 0.128);
   }
-  .logIn li:nth-child(1) button {
+  .logIn li:nth-child(1) Link {
     padding: 0;
     background-color: rgba(0, 0, 0, 0);
     color: white;
   }
-  .logIn li:nth-child(2) button {
+  .logIn li:nth-child(2) Link {
     padding: 10px 125px;
     color: white;
   }

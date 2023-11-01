@@ -1,8 +1,9 @@
-import React from "react";
+import { Link, Route, Routes } from "react-router-dom"; 
 import { useState, useRef, useEffect } from "react";
+import AuthDetails from "./AuthDetails.jsx"
 import styles from "../Styles/navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({setUserUid}) => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
 
@@ -29,7 +30,8 @@ const Navigation = () => {
   return (
     <>
       <nav className={styles.wrapper}>
-        <img src="/images/logo.svg" alt="logo" />
+        <Link to="/"><img src="/images/logo.svg" alt="logo" /></Link>
+        
         <div className={navClasses} ref={navRef}>
           <div>
             <ul className={styles.aboutLinks}>
@@ -58,19 +60,22 @@ const Navigation = () => {
           </div>
           <div>
             <ul className={styles.logIn}>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
-                <button>Login</button>
+              <li>
+                <AuthDetails setUserUid={setUserUid} />
               </li>
               <li
                 onClick={() => {
                   menuHandling();
                 }}
               >
-                <button>Sing Up</button>
+                <Link to="/signin">Log In</Link>
+              </li>
+              <li
+                onClick={() => {
+                  menuHandling();
+                }}
+              >
+                <Link to="/signup">Sign Up</Link>
               </li>
             </ul>
           </div>

@@ -1,17 +1,42 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { readLocalStorage, removeHandling } from "../lib/localStorageHandling";
+import { copyToClickBoard } from "../lib/copyToClickBoard";
+import { database } from "../lib/firebase";
+import { ref, set, push } from "firebase/database";
+import styles from "../Styles/savedLinks.module.css";
 
 const SavedLinks = ({
   shortDuringSessionLinks,
   normalDuringSessionLinks,
   setNormalLinksDuringSession,
   setShortLinksDuringSession,
+  userUid,
 }) => {
   const [longLinks, setLongLinks] = useState([]);
   const [shortLinks, setShortLinks] = useState([]);
   const [intialCheck, setIntialCheck] = useState(false);
   const [show, setShow] = useState(false);
+  const [linkCopied, setLinkCopied] = useState([]);
+  const [buttonClicked, setButtonClicked] = useState({});
+
+  //reference to users instance in realtime database
+  const usersSavedLinks = ref(database, `users/${userUid}/savedLinks`);
+
+  const handleCopy = (e, link) => {
+    copyToClickBoard(link);
+    setLinkCopied([...linkCopied, link]);
+    setButtonClicked({ ...buttonClicked, [link]: true });
+  };
+
+  const handleFavourite = (e) => {
+    const firebaseObj = push(usersSavedLinks,
+      {
+        long:`${e.target.parentNode.previousSibling.innerText}`,
+        short:`${e.target.previousSibling.innerText}`
+      }
+      );
+  };
 
   useEffect(() => {
     let currentStorage = readLocalStorage();
@@ -29,19 +54,24 @@ const SavedLinks = ({
   }, []);
 
   useEffect(() => {
-    if(intialCheck){
-        let _shortLinks = [...shortLinks];
-        let _longLinks = [...longLinks];
+    if (intialCheck) {
+      let _shortLinks = [...shortLinks];
+      let _longLinks = [...longLinks];
 
-        _longLinks.push(normalDuringSessionLinks[normalDuringSessionLinks.length - 1]);
-        _shortLinks.push(shortDuringSessionLinks[shortDuringSessionLinks[shortDuringSessionLinks.length - 1]]);
+      _longLinks.push(
+        normalDuringSessionLinks[normalDuringSessionLinks.length - 1]
+      );
 
-        setLongLinks(_longLinks);
-        setShortLinks(_shortLinks);
+      _shortLinks.push(
+        shortDuringSessionLinks[shortDuringSessionLinks.length - 1]
+      );
+
+      setLongLinks(_longLinks);
+      setShortLinks(_shortLinks);
     }
-  }, [shortDuringSessionLinks,normalDuringSessionLinks]);
+  }, [shortDuringSessionLinks, normalDuringSessionLinks]);
   return (
-    <div>
+    <div className={`${styles.wrapper} ${styles.savedLinksContainer}`}>
       {!show ? (
         <button
           onClick={() => {
@@ -63,9 +93,25 @@ const SavedLinks = ({
             {longLinks.map((link, index) => {
               return (
                 <li key={index}>
-                  <p>{link}</p>
-                  <p>{shortLinks[index]}</p>
-                  <button onClick={(e) => console.log(e)}>remove</button>
+                  <div className={styles.normal}>
+                    <p>{link}</p>
+                  </div>
+                  <div className={styles.short}>
+                    <p>{shortLinks[index]}</p>
+                    {/* shortLink = e.target.previousSibling.innerText 
+                        longLink = e.target.parentNode.previousSibling.innerText
+                    */}
+                    <button onClick={(e) => handleFavourite(e)}>Favourite</button>
+                    <button onClick={(e) => console.log(e)}>remove</button>
+                    <button
+                      className={buttonClicked[link] ? styles.copied : ""}
+                      onClick={(e) => {
+                        handleCopy(e, link);
+                      }}
+                    >
+                      {linkCopied.includes(link) ? "Copied!" : "Copy Link"}
+                    </button>
+                  </div>
                 </li>
               );
             })}

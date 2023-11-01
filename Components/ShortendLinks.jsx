@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import styles from "../Styles/shortenedLinks.module.css";
 import { copyToClickBoard } from "../lib/copyToClickBoard";
 import { saveToLocalStorage } from "../lib/localStorageHandling";
-
 const ShortenedLinks = ({
   currentShortList,
   currentOgList,
@@ -11,19 +10,16 @@ const ShortenedLinks = ({
   setNormalLinksDuringSession,
   setShortLinksDuringSession,
 }) => {
-
   let shortLinks = currentShortList;
   let longLinks = currentOgList;
   const [linkCopied, setLinkCopied] = useState([]);
   const [linkSaved, setLinkSaved] = useState([]);
   const [buttonClicked, setButtonClicked] = useState({});
-
   const handleClick = (e, link) => {
     copyToClickBoard(link);
     setLinkCopied([...linkCopied, link]);
     setButtonClicked({ ...buttonClicked, [link]: true });
   };
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.resultsContainer}>

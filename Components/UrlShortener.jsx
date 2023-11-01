@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "../Styles/UrlShortener.module.css";
 import { handleInputChange, handleSubmit } from "../lib/inputHandling";
+import FavouriteLinks from "./FavouriteLinks";
 import ShortenedLinks from "./ShortendLinks";
 import SavedLinks from "./savedLinks";
 
@@ -11,6 +12,7 @@ const UrlShortener = ({
   currentShortList,
   currentOgList,
   children,
+  userUid
 }) => {
   //states
   const [userInput, setUserInput] = useState("");
@@ -60,11 +62,15 @@ const UrlShortener = ({
           )}
         </form>
       </div>
+      <FavouriteLinks 
+        userUid = {userUid}
+      />
       <SavedLinks
         shortDuringSessionLinks={shortLinksDuringSession}
         normalDuringSessionLinks={nomralLinksDuringSession}
         setNormalLinksDuringSession={setNormalLinksDuringSession}
         setShortLinksDuringSession={setShortLinksDuringSession}
+        userUid = {userUid}
       />
       <ShortenedLinks
         currentShortList={currentShortList}
