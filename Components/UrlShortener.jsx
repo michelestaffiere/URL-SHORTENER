@@ -4,7 +4,7 @@ import styles from "../Styles/UrlShortener.module.css";
 import { handleInputChange, handleSubmit } from "../lib/inputHandling";
 import FavouriteLinks from "./FavouriteLinks";
 import ShortenedLinks from "./ShortendLinks";
-import SavedLinks from "./savedLinks";
+import SavedLinks from "./SavedLinks";
 
 const UrlShortener = ({
   shortLinks,
