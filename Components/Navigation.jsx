@@ -1,9 +1,11 @@
-import React from "react";
+import {Link} from "react-router-dom"; 
 import { useState, useRef, useEffect } from "react";
+import AuthDetails from "./AuthDetails.jsx"
 import styles from "../Styles/navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({setUserUid , userUid}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navRef = useRef(null);
 
   const navClasses = isOpen
@@ -29,61 +31,49 @@ const Navigation = () => {
   return (
     <>
       <nav className={styles.wrapper}>
-        <img src="/images/logo.svg" alt="logo" />
+        <Link to="/"><img src="/images/logo.svg" alt="logo" /></Link>
+        
         <div className={navClasses} ref={navRef}>
           <div>
             <ul className={styles.aboutLinks}>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
+              <li onClick={() => {menuHandling()}}>
                 Features
               </li>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
+              <li onClick={() => {menuHandling()}}>
                 Pricing
               </li>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
+              <li onClick={() => {menuHandling()}}>
                 Resources
               </li>
             </ul>
           </div>
+
           <div>
             <ul className={styles.logIn}>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
-                <button>Login</button>
+              <li>
+                <AuthDetails setUserUid={setUserUid} />
               </li>
-              <li
-                onClick={() => {
-                  menuHandling();
-                }}
-              >
-                <button>Sing Up</button>
-              </li>
+              {userUid === "" ? (
+                <>
+                <li onClick={() => {menuHandling()}} >
+                  <Link to="/signin">Log In</Link>
+                </li>
+                <li onClick={() => {  menuHandling()}}>
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+                </>
+              ):null}
             </ul>
           </div>
         </div>
-        <button
-          className={styles.hamburger}
+        <button className={styles.hamburger}
           onClick={(e) => {
             e.stopPropagation();
             menuHandling();
-          }}
-        >
+          }}>
           <img src="/images/hamburger.svg" alt="" />
         </button>
+        
       </nav>
     </>
   );
