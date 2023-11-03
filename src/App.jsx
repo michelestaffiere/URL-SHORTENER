@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate,Navigate } from "react-router-dom";
 import "./App.css";
 import Navigation from "../Components/Navigation.jsx";
 import Main from "../Components/main";
 import SignUp from "../Components/signUp";
 import SignIn from "../Components/signIn";
+import FavouriteLinks from "../Components/FavouriteLinks.jsx";
+import PageNotFound from "../Components/PageNotFound.jsx";
 function App() {
   const navigateTo = useNavigate();
-  const [userUid,setUserUid] = useState("");
+  const [userUid, setUserUid] = useState("");
   return (
     <>
       <div className="Page">
@@ -15,7 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Main userUid={userUid} />} />
           <Route path="/signup" element={<SignUp navigateTo={navigateTo} setUserUid={setUserUid} />} />
-          <Route path="/signin" element={<SignIn navigateTo={navigateTo}  setUserUid={setUserUid} />} />
+          <Route path="/signin"element={<SignIn navigateTo={navigateTo} setUserUid={setUserUid} />} />
+          <Route path="/favourites" element={userUid ? (<FavouriteLinks userUid={userUid} />) : (<Navigate to="*" />)} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </>

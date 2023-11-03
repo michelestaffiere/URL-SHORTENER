@@ -8,7 +8,8 @@ import styles from "../Styles/entryPortal.module.css"
 const SignIn = ({navigateTo,setUserUid}) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [errorMessage,setErrorMessage] = useState(false);
+  const [errorStatus,setErrorStatus] = useState(false);
+  const [errorMessage,setErrorMessage] = useState("");
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -20,8 +21,8 @@ const SignIn = ({navigateTo,setUserUid}) => {
       })
       .catch((error) => {
         console.log(error);
-        setErrorMessage(true);
-
+        setErrorStatus(true)
+        setErrorMessage("Incorrect email or password");
       });
   };
 
@@ -42,9 +43,10 @@ const SignIn = ({navigateTo,setUserUid}) => {
           value={password}
           />
         <button type="submit">Login</button>
+        {errorStatus ? <p style={{textAlign:'center', color:"red"}}>{errorMessage}</p> : null}
       </form>
-        {errorMessage ? <p>Incorrect Email or Password, please try again.</p> : null}
-        <p>Don't have an Account? , <Link to="/signup">Sign Up</Link></p>
+        <p>Don&apos;t have an Account? , <Link to="/signup">Sign Up</Link></p>
+        <p><Link to="/">Home</Link></p>
     </div>
   );
 };

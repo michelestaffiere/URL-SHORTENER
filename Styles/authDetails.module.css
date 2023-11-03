@@ -1,11 +1,7 @@
-/* .user {
-  outline: 1px solid red;
-} */
-
 .user p {
   color: var(--grayViolet);
 }
-.user p button {
+.user  button {
   margin-left: 1rem;
   text-decoration: none;
   border: none;
@@ -24,6 +20,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .user button{
+      margin: 0;
+      order: 0;
+    }
+    .user p{
+      margin: 0;
+    }
+    .user .link{
+      color: var(--primaryLight);
     }
 }
 

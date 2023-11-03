@@ -56,10 +56,10 @@ const Navigation = ({setUserUid , userUid}) => {
               {userUid === "" ? (
                 <>
                 <li onClick={() => {menuHandling()}} >
-                  <Link to="/signup">Log In</Link>
+                  <Link to="/signin">Log In</Link>
                 </li>
                 <li onClick={() => {  menuHandling()}}>
-                  <Link to="/signin">Sign Up</Link>
+                  <Link to="/signup">Sign Up</Link>
                 </li>
                 </>
               ):null}

@@ -1,18 +1,30 @@
-.container {
+.favouritesContainer{
+background-color: white;
+height: 100svh;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
-.favouriteList {
-  position: relative;
+.favouriteList{
+  margin: 0;
+  padding: 0;
+}
+.favourites{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 2rem;
-  width: 100%;
-  margin: 0;
-  padding: 0.75rem 0;
-  max-height: 30rem;
-  overflow-y: scroll;
 }
-
+.container {
+  display: flex;
+  justify-content: center;
+}
+.favouriteList li{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
 .shortLink {
     display: flex;
     align-items: center;
@@ -32,4 +44,31 @@
   }
   .resultsContainer .shortLink .copied {
     background-color: var(--primaryDark);
+  }
+
+  @media screen and (max-width:700px){
+    .favourites{
+ 
+    }
+    .favouriteList{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .favouriteList li{
+      width: 60%;
+      flex-direction: column;
+      padding: 1rem;
+      text-align: center;
+    }
+    .favouriteList li div:nth-child(1) p{
+      word-wrap:break-word;
+    }
+    .favouriteList li .shortLink{
+      flex-direction: column;
+    }
+    .favouriteList .shortLink button{
+      width: 100%;
+    }
+
   }

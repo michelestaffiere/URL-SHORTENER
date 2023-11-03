@@ -1,9 +1,8 @@
-import React from "react";
 import { useEffect, useState } from "react";
-import { readLocalStorage, removeHandling } from "../lib/localStorageHandling";
+import { readLocalStorage } from "../lib/localStorageHandling";
 import { copyToClickBoard } from "../lib/copyToClickBoard";
-import { database,dbRef } from "../lib/firebase";
-import { ref,push,get,child, orderByChild, equalTo,query} from "firebase/database";
+import { database, dbRef } from "../lib/firebase";
+import { push, get, child } from "firebase/database";
 import styles from "../Styles/savedLinks.module.css";
 
 const SavedLinks = ({
@@ -19,9 +18,10 @@ const SavedLinks = ({
   const [show, setShow] = useState(false);
   const [linkCopied, setLinkCopied] = useState([]);
   const [buttonClicked, setButtonClicked] = useState({});
+  const [favourite, setFavourite] = useState([]);
 
   const handleCopy = (e, link) => {
-    copyToClickBoard(link);
+    copyToClickBoard(e.target.parentNode.children[0].innerText);
     setLinkCopied([...linkCopied, link]);
     setButtonClicked({ ...buttonClicked, [link]: true });
   };
@@ -35,7 +35,9 @@ const SavedLinks = ({
     get(savedLinksRef).then((snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        const isDuplicate = Object.values(data).some((item) => item.short === shortLinkToCheck);
+        const isDuplicate = Object.values(data).some(
+          (item) => item.short === shortLinkToCheck
+        );
         if (!isDuplicate) {
           // No duplicate found, add the new link to savedLinks
           push(savedLinksRef, {
@@ -43,7 +45,7 @@ const SavedLinks = ({
             short: shortLinkToCheck,
           });
         } else {
-          return // Break out - duplicate found.
+          return; // Break out - duplicate found.
         }
       } else {
         // No data exists, for this user so push it anyways to create the users savedLinks collection.
@@ -53,9 +55,8 @@ const SavedLinks = ({
         });
       }
     });
+    setFavourite([...favourite, shortLinkToCheck]);
   };
-  
-
   useEffect(() => {
     let currentStorage = readLocalStorage();
     let _longLinks = [...longLinks];
@@ -75,8 +76,12 @@ const SavedLinks = ({
     if (intialCheck) {
       let _shortLinks = [...shortLinks];
       let _longLinks = [...longLinks];
-      _longLinks.push(normalDuringSessionLinks[normalDuringSessionLinks.length - 1]);
-      _shortLinks.push(shortDuringSessionLinks[shortDuringSessionLinks.length - 1]);
+      _longLinks.push(
+        normalDuringSessionLinks[normalDuringSessionLinks.length - 1]
+      );
+      _shortLinks.push(
+        shortDuringSessionLinks[shortDuringSessionLinks.length - 1]
+      );
       setLongLinks(_longLinks);
       setShortLinks(_shortLinks);
     }
@@ -85,12 +90,22 @@ const SavedLinks = ({
   return (
     <div className={`${styles.wrapper} ${styles.savedLinksContainer}`}>
       {!show ? (
-        <button onClick={() => {setShow(true)}}>
+        <button
+          onClick={() => {
+            setShow(true);
+          }}
+          className={styles.showButton}
+        >
           Show Saved Links
         </button>
       ) : (
         <>
-          <button onClick={() => {setShow(false)}}>
+          <button
+            onClick={() => {
+              setShow(false);
+            }}
+            className={styles.hideButton}
+          >
             Hide
           </button>
           <ul>
@@ -101,11 +116,23 @@ const SavedLinks = ({
                     <p>{link}</p>
                   </div>
 
-
                   <div className={styles.short}>
                     <p>{shortLinks[index]}</p>
-                    <button disabled={!userUid} onClick={(e) => handleFavourite(e)}>Favourite</button>
-                    <button onClick={(e) => console.log(e)}>remove</button>
+                    <button
+                      disabled={!userUid}
+                      onClick={(e) => {
+                        handleFavourite(e);
+                      }}
+                      className={
+                        favourite.includes(shortLinks[index])
+                          ? styles.favourite
+                          : ""
+                      }
+                    >
+                      {favourite.includes(shortLinks[index])
+                        ? "Favourited"
+                        : "Favourite"}
+                    </button>
                     <button
                       className={buttonClicked[link] ? styles.copied : ""}
                       onClick={(e) => {

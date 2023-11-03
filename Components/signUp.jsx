@@ -9,21 +9,41 @@ import styles from "../Styles/entryPortal.module.css"
 const SignUp = ({navigateTo,setUserUid}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword,setShowPassword] = useState(false);
+  const [errorStatus,setErrorStatus] = useState(false);
+  const [errorMessage,setErrorMessage] = useState("");
+ 
+  const handleShowPassword = () =>{
+    showPassword === false ? setShowPassword(true) : setShowPassword (false)
+    return null
+  }
+ 
   const handleSignUp = (e) => {
     e.preventDefault();
-
-    createUserWithEmailAndPassword(auth, email, password).then((userCreds) => {
-      const uid = userCreds.user.uid;
-      const userRef = ref(database, `users/${uid}`);
-      const data = {
-        email: email,
-        savedLinks: {}
-      };
-      set(userRef, data).then(() => {
-        setUserUid(uid);
-        navigateTo("/");
+    if(password.length <= 6){
+      setErrorStatus(true);
+      setErrorMessage("Password must be at least 6 characters long.")
+      return null
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCreds) => {
+        const uid = userCreds.user.uid;
+        const userRef = ref(database, `users/${uid}`);
+        const data = {
+          email: email,
+          savedLinks: {}
+        };
+        set(userRef, data).then(() => {
+          setUserUid(uid);
+          navigateTo("/");
+        });
+      }).catch((error)=>{
+        setErrorStatus(true);
+        setErrorMessage(error.code);
       });
-    });
+      setErrorMessage("");
+      setErrorStatus(false);
+    return null
   };
 
   return (
@@ -39,7 +59,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
           value={email}
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -47,8 +67,10 @@ const SignUp = ({navigateTo,setUserUid}) => {
           value={password}
         />
         <button type="submit">Sign Up</button>
+      {errorStatus ? <p style={{textAlign:'center', color:"red"}}>{errorMessage}</p> : null}
       </form>
       <p>Already have an account?, <Link to="/signin">Sign In</Link></p>
+      
     </div>
   );
 };

@@ -62,9 +62,6 @@ const UrlShortener = ({
           )}
         </form>
       </div>
-      <FavouriteLinks 
-        userUid = {userUid}
-      />
       <SavedLinks
         shortDuringSessionLinks={shortLinksDuringSession}
         normalDuringSessionLinks={nomralLinksDuringSession}

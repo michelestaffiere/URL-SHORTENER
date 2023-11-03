@@ -56,7 +56,7 @@
   font-family: var(--fontFamily);
   font-weight: var(--heavy);
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: 0.15s ease-in-out;
 }
 
@@ -83,6 +83,8 @@
   .resultsContainer ul li .longLink p,
   .resultsContainer ul li .shortLink p  {
     margin: 1rem 0 1rem 1rem;
+    word-wrap: break-word;
+ 
   }
   .resultsContainer ul li .longLink p{
     margin-bottom: .25rem;

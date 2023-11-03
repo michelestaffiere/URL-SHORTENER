@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { auth } from "../lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
+import { Link } from "react-router-dom";
 import styles from "../Styles/authDetails.module.css";
 
 const AuthDetails = ({setUserUid}) => {
@@ -37,9 +38,11 @@ const AuthDetails = ({setUserUid}) => {
         {authUser ? 
           (
           <>
+          <Link to="/favourites" className={styles.link}>Favourites</Link>
           <p>{`${authUser.email}`}</p> 
           <br></br>
-          <p><button onClick={userSignOut}>Sign Out</button></p>
+          <button onClick={userSignOut}>Sign Out</button>
+          <br></br>
           </>
           ) : 
           (null)
