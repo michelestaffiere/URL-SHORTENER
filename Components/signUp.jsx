@@ -70,7 +70,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
       {errorStatus ? <p style={{textAlign:'center', color:"red"}}>{errorMessage}</p> : null}
       </form>
       <p>Already have an account?, <Link to="/signin">Sign In</Link></p>
-      
+      <p><Link to="/">Home</Link></p>
     </div>
   );
 };
