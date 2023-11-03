@@ -4,6 +4,7 @@ import "./App.css";
 import Navigation from "../Components/Navigation";
 import Main from "../Components/Main";
 import SignIn from "../Components/SignIn";
+import SignUp from "../Components/SignUp"
 import FavouriteLinks from "../Components/FavouriteLinks";
 import PageNotFound from "../Components/PageNotFound";
 function App() {
