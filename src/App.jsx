@@ -4,7 +4,7 @@ import "./App.css";
 import Navigation from "../Components/Navigation";
 import Main from "../Components/Main";
 import SignIn from "../Components/SignIn";
-import SignUp from "../Components/SignUp"
+// import SignUp from "../Components/SignUp"
 import FavouriteLinks from "../Components/FavouriteLinks";
 import PageNotFound from "../Components/PageNotFound";
 function App() {
@@ -16,7 +16,7 @@ function App() {
         <Navigation setUserUid={setUserUid} userUid={userUid} />
         <Routes>
           <Route path="/" element={<Main userUid={userUid} />} />
-          <Route path="/signup" element={<SignUp navigateTo={navigateTo} setUserUid={setUserUid} />} />
+          {/* <Route path="/signup" element={<SignUp navigateTo={navigateTo} setUserUid={setUserUid} />} /> */}
           <Route path="/signin"element={<SignIn navigateTo={navigateTo} setUserUid={setUserUid} />} />
           <Route path="/favourites" element={userUid ? (<FavouriteLinks userUid={userUid} />) : (<Navigate to="*" />)} />
           <Route path="*" element={<PageNotFound />} />
