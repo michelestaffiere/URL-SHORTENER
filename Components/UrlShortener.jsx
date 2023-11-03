@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import {useState } from "react";
 import styles from "../Styles/UrlShortener.module.css";
 import { handleInputChange, handleSubmit } from "../lib/inputHandling";
-import FavouriteLinks from "./FavouriteLinks";
 import ShortenedLinks from "./ShortendLinks";
 import SavedLinks from "./SavedLinks";
+
 
 const UrlShortener = ({
   shortLinks,
