@@ -9,14 +9,9 @@ import styles from "../Styles/entryPortal.module.css"
 const SignUp = ({navigateTo,setUserUid}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword,setShowPassword] = useState(false);
   const [errorStatus,setErrorStatus] = useState(false);
   const [errorMessage,setErrorMessage] = useState("");
- 
-  const handleShowPassword = () =>{
-    showPassword === false ? setShowPassword(true) : setShowPassword (false)
-    return null
-  }
+
  
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -59,7 +54,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
           value={email}
         />
         <input
-          type={showPassword ? "text" : "password"}
+          type="password"
           placeholder="Password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -70,7 +65,7 @@ const SignUp = ({navigateTo,setUserUid}) => {
       {errorStatus ? <p style={{textAlign:'center', color:"red"}}>{errorMessage}</p> : null}
       </form>
       <p>Already have an account?, <Link to="/signin">Sign In</Link></p>
-      
+      <p><Link to="/">Home</Link></p>
     </div>
   );
 };
