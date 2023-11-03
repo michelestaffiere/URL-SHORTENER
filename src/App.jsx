@@ -3,8 +3,8 @@ import { Route, Routes, useNavigate,Navigate } from "react-router-dom";
 import "./App.css";
 import Navigation from "../Components/Navigation.jsx";
 import Main from "../Components/Main";
-import SignUp from "../Components/signUp";
-import SignIn from "../Components/signIn";
+import SignUp from "../Components/SignUp";
+import SignIn from "../Components/SignIn";
 import FavouriteLinks from "../Components/FavouriteLinks.jsx";
 import PageNotFound from "../Components/PageNotFound.jsx";
 function App() {
