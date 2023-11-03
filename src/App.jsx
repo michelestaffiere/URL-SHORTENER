@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate,Navigate } from "react-router-dom";
 import "./App.css";
 import Navigation from "../Components/Navigation";
 import Main from "../Components/Main";
-import SignUp from "../Components/SignUp";
 import SignIn from "../Components/SignIn";
 import FavouriteLinks from "../Components/FavouriteLinks";
 import PageNotFound from "../Components/PageNotFound";
