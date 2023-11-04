@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../Styles/shortenedLinks.module.css";
 import { copyToClickBoard } from "../lib/copyToClickBoard";
-import { saveToLocalStorage } from "../lib/localStorageHandling";
+import { saveToLocalStorage, readLocalStorage } from "../lib/localStorageHandling";
 const ShortenedLinks = ({
   currentShortList,
   currentOgList,
@@ -48,19 +48,28 @@ const ShortenedLinks = ({
                     <button
                       className={styles.save}
                       onClick={(e) => {
-                        const link =
-                          e.target.parentNode.previousElementSibling.children[0]
-                            .innerText;
-                        const shortLink =
-                          e.target.parentNode.children[0].innerText;
+                        const link = e.target.parentNode.previousElementSibling.children[0].innerText;
+                        const shortLink = e.target.parentNode.children[0].innerText;
+                        const inStorage = readLocalStorage();
+                        let linkFound = false;
+                        if(inStorage === null){
+                          return null;
+                        }
+                        inStorage.forEach((save) => {
+                          if (save.includes(link) || save.includes(shortLink)) {
+                            linkFound = true;
+                            return null;
+                          }
+                        });
+                        if (linkFound) {
+                          alert("can't save the same link twice!");
+                          return null; 
+                        }
                         saveToLocalStorage(link, shortLink);
-                        
                         let _shortDuringSession = [...shortDuringSessionLinks];
                         let _normalDuringSession = [...normalDuringSessionLinks];
-
                         _shortDuringSession.push(shortLink);
                         _normalDuringSession.push(link);
-
                         setShortLinksDuringSession(_shortDuringSession);
                         setNormalLinksDuringSession(_normalDuringSession);
                       }}
