@@ -117,7 +117,7 @@ const SavedLinks = ({
                   </div>
 
                   <div className={styles.short}>
-                    <p>{shortLinks[index]}</p>
+                    <div className={styles.shortContainer}><p>{shortLinks[index]}</p></div> 
                     <button
                       disabled={!userUid}
                       onClick={(e) => {
